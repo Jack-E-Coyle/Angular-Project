@@ -1,6 +1,6 @@
-
 .card-body {
-    background:	#b2daed;
+    background:rgba(0,0,0,0.87);
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100px;
 }
