@@ -2,13 +2,15 @@
   <div class="card-body">
     <form>
         <label for="basic-url">Your vanity URL</label>
+        <small><br>Input Character ID</small>
+        <small><br>(1 - 697)</small>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+    <span class="input-group-text" id="basic-addon3" style="font-size: smaller;">https://rickandmortyapi.com/api/character/</span>
   </div>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  <input type="text" class="form-control" id="characterIDInput" aria-describedby="basic-addon3">
 </div>
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary" (click)="(getInfo(characterIDInput.Value))">Submit</button>
     </form>
     </div>
 </div>
