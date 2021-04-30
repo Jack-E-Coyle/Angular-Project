@@ -6,12 +6,18 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ApiComponent } from './api/api.component';
+import { DisplayComponent } from './display/display.component';
+import { RecentApiComponent } from './recent-api/recent-api.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ApiComponent,
+    DisplayComponent,
+    RecentApiComponent
   ],
   imports: [
     BrowserModule,
