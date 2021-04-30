@@ -1,9 +1,11 @@
 .card {
+    background: url(../../assets/images/portal.png);
+    background-position: center;
     border-radius: 50px;
     margin-top: 10px;
     margin-bottom: 10px;
     height: 16em;
-    background: #01b4c6;
+    font-weight: bolder;
     margin-left: 28em;
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

@@ -3,10 +3,13 @@
     margin-top: 10px;
     margin-left: 24em;
     height: 16em;
-    background: #01b4c6;
+    background-image: url(../../assets/images/portal.png);
+    background-position: center;
+    font-weight: bolder;
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 
 .card-body {
     border-style: solid;
