@@ -10,6 +10,8 @@ import { ApiComponent } from './api/api.component';
 import { DisplayComponent } from './display/display.component';
 import { RecentApiComponent } from './recent-api/recent-api.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +22,7 @@ import { RecentApiComponent } from './recent-api/recent-api.component';
     RecentApiComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     NgbModule
   ],
