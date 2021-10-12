@@ -11,6 +11,7 @@ import { DisplayComponent } from './display/display.component';
 import { RecentApiComponent } from './recent-api/recent-api.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CharacterComponent } from './character/character.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     ApiComponent,
     DisplayComponent,
-    RecentApiComponent
+    RecentApiComponent,
+    CharacterComponent
   ],
   imports: [
     HttpClientModule,
