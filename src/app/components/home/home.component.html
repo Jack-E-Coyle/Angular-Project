@@ -1,4 +1,22 @@
-<div style="height: 80vh">
-    <p>home works!</p>
+<div class="container m-100 main overflow-auto" style="height: 10vh; text-align: center;" >
+
+    <!-- <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Notes App</h1>
+        </div>
+      </div> -->
+
+      <div class="row" style="margin-top: 2em;">
+        <div class="input-group">
+          <button class="btn" style="color: white; background-color: #BF94E4;" (click)="getToDos()">Get To-Do List</button>
+        </div>
+      
+      </div>
+</div>
+
+<div class="container m-100 main overflow-auto" style="height: 70vh;" >
+    <div>
+      <app-todo-row *ngFor="let todo of toDoList" [todo]="todo"></app-todo-row>
+    </div>
 </div>
 

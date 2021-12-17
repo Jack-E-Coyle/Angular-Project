@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from  '@angular/fire/compat/firestore';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Note } from 'src/app/interfaces/note';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -10,22 +10,19 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./note-list.component.css']
 })
 export class NoteListComponent implements OnInit {
-  dataSource : any;
+  
+  dataSource: any;
+  filteredNotes!: Note[]
+  selectedNote: any;
 
   noteForm!: FormGroup;
+  queryForm!: FormGroup;
 
-  selectedNote!: Note;
+  message: string = "Error";
 
-  // id : any;
-  // title : any;
-  // text : any;
-
-  editObj : any;
-
-  message: string = "LOL";
-
-  @ViewChild('btnShow')
+  @ViewChild('btnShow') // Open
   btnShow!: ElementRef;
+
   @ViewChild('btnClose')
   btnClose!: ElementRef;
 
@@ -40,11 +37,32 @@ export class NoteListComponent implements OnInit {
       text: new FormControl(this.selectedNote?.text, [Validators.required, Validators.minLength(3)]),
     })
 
+    this.queryForm = new FormGroup({
+      query: new FormControl(this.selectedNote?.text)
+    })
   }
 
-  clicked(note: Note): void {
+  // get title() {
+  //   return this.noteForm?.get('title');
+  // }
+
+  // get text() {
+  //   return this.noteForm?.get('text');
+  // }
+
+  getNote()   //Searching for an individual note
+  {
+    // let filteredNotes = this.dataSource.find((note: Note) => note.title === this.queryForm.value.query);
+
+    let filteredNotes = this.dataSource.filter((note: Note) => 
+      note.title === this.queryForm.value.query
+    );
+
+    console.log(filteredNotes);
+  }
+
+  clicked(note: Note) {
     this.selectedNote = note;
-    console.table(this.selectedNote)
   }
 
   openDialog() {
@@ -52,28 +70,32 @@ export class NoteListComponent implements OnInit {
   }
 
   closeDialog() {
+
+    console.log("In close dialogue");
+
     this.clearEdit(); // Not clearing fields
     this.btnClose.nativeElement.click();
   }
 
   clearEdit() {
-    this.editObj = null;
-    this.selectedNote == null;
+
+    console.log("In clear edit");
+
+    this.selectedNote = "";
+
+    console.log(this.selectedNote);
   }
 
   add() {
-
-    // if(this.selectedNote){
-    //   this.noteService.editNote(this.noteForm?.value); // Using Service
-    //   //this.store.collection('notes').doc(this.editObj.id).update({title : this.title, text : this.text});
-    // } 
-    // else {
-      //this.store.collection('notes').add({title : this.title, text : this.text});
-    // }
-
-    console.log(this.noteForm.value);
     this.noteService.addNote(this.noteForm.value); // Using Service
-    
+    console.log(this.noteForm.value);
+    this.closeDialog();
+  }
+
+  edit() {
+
+    this.noteService.editNote(this.selectedNote.id, this.noteForm.value);
+
     this.closeDialog();
   }
 

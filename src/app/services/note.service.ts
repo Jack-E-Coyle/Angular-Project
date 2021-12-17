@@ -36,13 +36,13 @@ export class NoteService {
   //__________READ
 
   // getNotes(): Observable<Note[]> {
-
+    
   // }
 
   //__________UPDATE
 
-  editNote(note: Note) {
-    this.store.collection('notes').doc(note.id).update({title : note.title, text : note.text});
+  editNote(id: string | undefined, note: Note) {
+    this.store.collection('notes').doc(id).update({title : note.title, text : note.text});
   }
 
 //__________DELETE

@@ -13,6 +13,9 @@ import { NoteListComponent } from './components/note-list/note-list.component';
 import { HomeComponent } from './components/home/home.component';
 import { NoteRowComponent } from './components/note-row/note-row.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { TodoRowComponent } from './components/todo-row/todo-row.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,12 +23,14 @@ import { NoteRowComponent } from './components/note-row/note-row.component';
     FooterComponent,
     NoteListComponent,
     HomeComponent,
-    NoteRowComponent
+    NoteRowComponent,
+    TodoRowComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyBupX0urRTuffB8lNQVnrcXihpCXSolflk",

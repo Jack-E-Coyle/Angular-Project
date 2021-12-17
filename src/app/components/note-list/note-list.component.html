@@ -1,50 +1,78 @@
-<div class="container m-100 main" style="height: 80vh">
-    
+<div class="container m-100 main overflow-auto" style="height: 10vh;" >
  
 
-    <div>
+  <div class="row" style="margin-top: 2em;">
 
-      <button type="button" class="btn btn-dark" (click)="openDialog()" style="margin-top: 2em;">Add</button>
+    <div class="col-sm-4">
 
-      <!-- <svg data-bs-toggle="modal" (click)="openDialog()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cloud-plus-fill" style="cursor: pointer;" viewBox="0 0 16 16">
-        <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm.5 4v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
-      </svg> -->
+      <form class="form-inline" [formGroup]="queryForm" (ngSubmit)="getNote()">
+
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search" formControlName="query">
+          <button type="submit" class="btn" style="color: white; background-color: #BF94E4;">Search</button>
+        </div>
+      
+      </form>
 
     </div>
 
-    <app-note-row *ngFor="let item of dataSource" [note]="item" (click)='clicked(item)' (openDialog)="openDialog()"></app-note-row>
+    <div class="col-sm-6">
+
+    </div>
+
+    <div class="col-sm-2">
+      <button type="button" class="btn" (click)="openDialog()" style="color: white; background-color: #BF94E4;">Add</button>
+    </div>
 
   </div>
+    
+    <!-- <svg data-bs-toggle="modal" (click)="openDialog()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cloud-plus-fill" style="cursor: pointer;" viewBox="0 0 16 16">
+        <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm.5 4v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
+    </svg> -->
+</div>
 
-  <button #btnShow style="display: none;" id="btnShow" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" ></button>
+<div class="container m-100 main overflow-auto" style="height: 70vh;" >
+
+    <app-note-row *ngFor="let item of dataSource" [note]="item" (click)='clicked(item)' (openDialog)="openDialog()"></app-note-row>
+
+</div>
+
+<button #btnShow style="display: none;" id="btnShow" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" ></button>
 
 <div id="exampleModal" #myModal class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h5 class="modal-title">Add New Note</h5>
+
+        <h5 class="modal-title" *ngIf="!selectedNote">Add new note</h5>
+        <h5 class="modal-title" *ngIf="selectedNote">Edit note</h5>
+
         <button #btnClose id="btnClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
-
-        <form [formGroup]="noteForm" (ngSubmit)="add()">
+        <form [formGroup]="noteForm">
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Title</label>
-          <input type="text" formControlName="title" class="form-control" id="exampleFormControlInput1" placeholder="enter title">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" formControlName="title" class="form-control" id="title" placeholder="enter title">
         </div>
         <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Text</label>
-          <textarea class="form-control" formControlName="text" placeholder="enter some text" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <label for="text" class="form-label">Text</label>
+          <textarea class="form-control" formControlName="text" placeholder="enter some text" id="text" rows="3"></textarea>
         </div>
         </form>
-
       </div>
 
       <div class="modal-footer">
         <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click)="add()">Save changes</button>
+
+        <button type="submit" class="btn" (click)="add()" style="color: white; background-color: #BF94E4;" *ngIf="!selectedNote">Add</button>
+
+        <button type="submit" class="btn" (click)="edit()" style="color: white; background-color: #BF94E4;" *ngIf="selectedNote">Save changes</button>
+
       </div>
+
     </div>
   </div>
 </div>
